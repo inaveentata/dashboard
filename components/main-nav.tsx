@@ -1,11 +1,14 @@
+'use client'
 import Link from "next/link"
-
+import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 
 export function MainNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
+  const pathname = usePathname()
+
   return (
     <nav
       className={cn("flex items-center space-x-4 lg:space-x-6", className)}
@@ -13,25 +16,41 @@ export function MainNav({
     >
       <Link
         href="/"
-        className="text-sm font-medium transition-colors hover:text-primary"
+        className={cn(
+          "text-sm font-medium transition-colors",
+          pathname === "/" ? "text-primary" : "text-muted-foreground",
+          "hover:text-primary"
+        )}
       >
         Overview
       </Link>
       <Link
         href="/locations"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        className={cn(
+          "text-sm font-medium transition-colors",
+          pathname === "/locations" ? "text-primary" : "text-muted-foreground",
+          "hover:text-primary"
+        )}
       >
         Locations
       </Link>
       <Link
         href="/documents"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        className={cn(
+          "text-sm font-medium transition-colors",
+          pathname === "/documents" ? "text-primary" : "text-muted-foreground",
+          "hover:text-primary"
+        )}
       >
         Documents
       </Link>
       <Link
         href="/contractors"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        className={cn(
+          "text-sm font-medium transition-colors",
+        pathname === "/contractors" ? "text-primary" : "text-muted-foreground",
+          "hover:text-primary"
+        )}
       >
         Contractors
       </Link>
